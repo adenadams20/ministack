@@ -1,12 +1,12 @@
 
-
+import Navbar from "./components/Navbar"
 function App() {
 
   return (
-      <div className="bg-red-500">
-        test
-      </div>  
-       
+    <div>
+      <Navbar />
+    </div>
+
   )
 }
 
