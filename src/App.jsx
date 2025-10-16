@@ -1,11 +1,11 @@
 import React from "react";
-import QuestionCard from "./components/QuestionCard"
+import Home from "./pages/Home"
 function App() {
   
 
   return (
    <div>
-   <QuestionCard />
+   <Home/>
    </div>
   )
 }
