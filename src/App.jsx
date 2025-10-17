@@ -1,5 +1,6 @@
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       {/* Contenu principal */}
       <main className="md:ml-56 mt-[64px] p-4">
       </main>
+      <Footer />
     </div>
   );
 }
