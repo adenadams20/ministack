@@ -1,13 +1,12 @@
-
+import "./App.css";
+import AppRoutes from "./routes/AppRoutes";
 
 function App() {
-
   return (
-      <div className="bg-red-500">
-        test
-      </div>  
-       
-  )
+    <div className="App">
+      <AppRoutes />
+    </div>
+  );
 }
 
-export default App
+export default App;
