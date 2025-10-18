@@ -1,35 +1,48 @@
-import { createContext, useState, useContext } from "react";
+import React, { createContext, useEffect, useState } from "react";
+import { addQuestion, getQuestions, getQuestionById } from "../services/questionService";
 
-// 1️⃣ Création du contexte
-const QuestionContext = createContext();
+export const QuestionContext = createContext();
 
-// 2️⃣ Fournisseur de contexte
 export const QuestionProvider = ({ children }) => {
-  const [questions, setQuestions] = useState([
-    {
-      id: 1,
-      title: "Comment utiliser useEffect en React ?",
-      author: "Sadio",
-      date: "15 octobre 2025",
-      tags: ["react", "hooks", "javascript"],
-      votes: 8,
-    },
-    {
-      id: 2,
-      title: "Quelle différence entre var, let et const ?",
-      author: "Alex",
-      date: "14 octobre 2025",
-      tags: ["javascript", "variables"],
-      votes: 5,
-    },
-  ]);
+  const [questions, setQuestions] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // Charger les questions au montage
+  useEffect(() => {
+    fetchQuestions();
+  }, []);
+
+  const fetchQuestions = async () => {
+    setLoading(true);
+    try {
+      const data = await getQuestions();
+      setQuestions(data);
+    } catch (error) {
+      console.error("Erreur de chargement des questions:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const createQuestion = async (newQuestion) => {
+    await addQuestion(newQuestion);
+    await fetchQuestions(); // recharge la liste après ajout
+  };
+
+  const getById = async (id) => {
+    return await getQuestionById(id);
+  };
 
   return (
-    <QuestionContext.Provider value={{ questions, setQuestions }}>
+    <QuestionContext.Provider
+      value={{
+        questions,
+        loading,
+        createQuestion,
+        getById,
+      }}
+    >
       {children}
     </QuestionContext.Provider>
   );
 };
-
-// 3️⃣ Hook personnalisé pour utiliser le contexte facilement
-export const useQuestions = () => useContext(QuestionContext);
