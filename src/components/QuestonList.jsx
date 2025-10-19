@@ -1,16 +1,17 @@
+// src/components/QuestionList.jsx
 import React from "react";
+import { useQuestions } from "../context/QuestionContext";
 import QuestionCard from "./QuestionCard";
 
-const QuestionList = ({ questions }) => {
-  if (!questions || questions.length === 0) {
-    return <p className="text-gray-500">Aucune question pour le moment.</p>;
-  }
+const QuestionList = () => {
+  const { questions, loading } = useQuestions();
+
+  if (loading) return <p>Chargement des questions...</p>;
 
   return (
-    <div className="space-y-4">
-    
-      {questions.map((q) => (
-        <QuestionCard key={q.id} question={q} />
+    <div className="flex flex-wrap  flex-col bg-white">
+      {questions.map((q, i) => (
+        <QuestionCard key={i} question={q} />
       ))}
     </div>
   );
