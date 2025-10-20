@@ -24,13 +24,15 @@ export default function UserProfile() {
             <thead>
               <tr className="bg-gray-200">
                 <th className="px-4 py-2 text-left text-gray-700">Nom</th>
+                <th className="px-4 py-2 text-left text-gray-700">Prenom</th>
                 <th className="px-4 py-2 text-left text-gray-700">Email</th>
               </tr>
             </thead>
             <tbody>
               {users.map((user, index) => (
                 <tr key={index} className="border-b hover:bg-gray-100">
-                  <td className="px-4 py-2">{user.name || "—"}</td>
+                  <td className="px-4 py-2">{user.nom || "—"}</td>
+                  <td className="px-4 py-2">{user.prenom || "—"}</td>
                   <td className="px-4 py-2">{user.email}</td>
                 </tr>
               ))}
