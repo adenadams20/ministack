@@ -3,10 +3,10 @@ import { Editor } from "primereact/editor";
 import "primereact/resources/themes/saga-blue/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
-import { useQuestions } from "../context/QuestionContext"; // ✅ Import du contexte
+import { useQuestions } from "../context/QuestionContext";
 
 const QuestionForm = () => {
-const { createQuestion } = useQuestions(); // ✅ Utilise la bonne fonction du contexte
+const { createQuestion } = useQuestions();
 
 const [title, setTitle] = useState("");
 const [description, setDescription] = useState("");
@@ -17,17 +17,18 @@ const isFormValid = title.trim() !== "" && description.trim() !== "";
 const handleSubmit = async (e) => {
 e.preventDefault();
 const newQuestion = {
-  title,
-  description,
-  tags: tags
-    .split(",")
-    .map((tag) => tag.trim())
-    .filter((tag) => tag !== ""),
-  createdAt: new Date().toISOString(),
+title,
+description,
+tags: tags
+.split(",")
+.map((tag) => tag.trim())
+.filter((tag) => tag !== ""),
+createdAt: new Date().toISOString(),
 };
 
+
 try {
-  await createQuestion(newQuestion); // ✅ Ajoute la question dans Firestore
+  await createQuestion(newQuestion);
   alert("✅ Question publiée avec succès !");
   setTitle("");
   setDescription("");
@@ -39,65 +40,81 @@ try {
 
 };
 
-return ( 
+return ( <div className="flex justify-center py-10 px-4 bg-sky-900"> <div className="w-full max-w-3xl bg-white shadow-md rounded-lg p-8"> <h2 className="text-2xl font-semibold mb-6 text-gray-800 border-b pb-3">
+Poser une question </h2>
 
-  <form
-   onSubmit={handleSubmit}
-   className="space-y-4 bg-white p-6 shadow-md rounded-lg"
- > <h2 className="text-xl font-semibold mb-2">Poser une question</h2>
+    <form onSubmit={handleSubmit} className="space-y-6">
+      {/* Champ Titre */}
+      <div>
+        <label className="block font-medium mb-1 text-gray-800">
+          Titre de la question
+        </label>
+        <input
+          type="text"
+          placeholder="Exemple : Comment utiliser useState en React ?"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          className="w-full border border-gray-300 p-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+          required
+        />
+        <p className="text-sm text-gray-800 mt-1">
+          Soyez précis et imaginez que vous posez cette question à une autre
+          personne.
+        </p>
+      </div>
 
-  {/* Champ Titre */}
-  <div>
-    <label className="block font-medium mb-1">Titre</label>
-    <input
-      type="text"
-      placeholder="Entrez un titre clair..."
-      value={title}
-      onChange={(e) => setTitle(e.target.value)}
-      className="w-full border border-gray-300 p-2 rounded"
-      required
-    />
+      {/* Éditeur PrimeReact */}
+      <div>
+        <label className="block font-medium mb-1 text-gray-800">
+          Description
+        </label>
+        <Editor
+          value={description}
+          onTextChange={(e) => setDescription(e.htmlValue || "")}
+          style={{ height: "300px" }}
+          placeholder="Décrivez votre problème en détail..."
+          className="border border-gray-500 rounded"
+        />
+        <p className="text-sm text-gray-800 mt-1">
+          Incluez ce que vous avez essayé, les erreurs reçues, et tout
+          contexte utile.
+        </p>
+      </div>
+
+      {/* Champ Tags */}
+      <div>
+        <label className="block font-medium mb-1 text-gray-800">
+          Tags (séparés par des virgules)
+        </label>
+        <input
+          type="text"
+          placeholder="ex : javascript, react, firebase"
+          value={tags}
+          onChange={(e) => setTags(e.target.value)}
+          className="w-full border border-gray-300 p-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        <p className="text-sm text-gray-500 mt-1">
+          Ajoutez jusqu’à 5 tags pour décrire les technologies concernées.
+        </p>
+      </div>
+
+      {/* Bouton de soumission */}
+      <div className="flex justify-end">
+        <button
+          type="submit"
+          disabled={!isFormValid}
+          className={`px-6 py-2 rounded text-white font-medium ${
+            isFormValid
+              ? "bg-blue-600 hover:bg-blue-700"
+              : "bg-gray-400 cursor-not-allowed"
+          }`}
+        >
+          Publier la question
+        </button>
+      </div>
+    </form>
   </div>
-
-  //  Éditeur PrimeReact 
-  <div>
-    <label className="block font-medium mb-1">Description</label>
-    <Editor
-      value={description}
-      onTextChange={(e) => setDescription(e.htmlValue || "")}
-      style={{ height: "300px" }}
-      placeholder="Décrivez votre problème ou votre question en détail..."
-    />
-  </div>
-
-  {/* Champ Tags */}
-  <div>
-    <label className="block font-medium mb-1">
-      Tags (séparés par des virgules)
-    </label>
-    <input
-      type="text"
-      placeholder="ex: javascript, react, firebase"
-      value={tags}
-      onChange={(e) => setTags(e.target.value)}
-      className="w-full border border-gray-300 p-2 rounded"
-    />
-  </div>
-
-  // Bouton de soumission 
-  <button
-    type="submit"
-    className={`px-4 py-2 rounded text-white ${
-      isFormValid
-        ? "bg-blue-600 hover:bg-blue-700"
-        : "bg-gray-400 cursor-not-allowed"
-    }`}
-    disabled={!isFormValid}
-  >
-    Publier la question
-  </button>
-</form>
-
+</div>
 
 );
 };

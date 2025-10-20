@@ -25,7 +25,7 @@ console.log("✅ Question ajoutée avec ID:", docRef.id);
 return { id: docRef.id, ...questionData, createdAt: new Date().toISOString() };
 
 } catch (error) {
-console.error("❌ Erreur d'ajout de la question:", error);
+console.error(" Erreur d'ajout de la question:", error);
 throw error;
 }
 };

@@ -9,7 +9,7 @@ const QuestionList = () => {
   if (loading) return <p>Chargement des questions...</p>;
 
   return (
-    <div className="flex flex-wrap  flex-col bg-white">
+    <div className="flex flex-wrap  flex-col bg-white shadow">
       {questions.map((q, i) => (
         <QuestionCard key={i} question={q} />
       ))}

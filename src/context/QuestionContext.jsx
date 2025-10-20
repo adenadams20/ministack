@@ -20,7 +20,7 @@ try {
 const data = await getQuestions();
 setQuestions(data);
 } catch (error) {
-console.error("❌ Erreur de chargement des questions :", error);
+console.error(" Erreur de chargement des questions :", error);
 } finally {
 setLoading(false);
 }
@@ -33,7 +33,7 @@ const addedQuestion = await addQuestion(newQuestion);
 // ✅ Met à jour la liste locale immédiatement
 setQuestions((prev) => [addedQuestion, ...prev]);
 } catch (error) {
-console.error("❌ Erreur lors de l'ajout de la question :", error);
+console.error(" Erreur lors de l'ajout de la question :", error);
 }
 };
 
