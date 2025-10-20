@@ -23,7 +23,7 @@ export default function ForgotPassword() {
   return (
     <div className="flex min-h-full  flex-col justify-center px-6 py-12 lg:px-8 ">
       <div className="sm:mx-auto sm:w-full  sm:max-w-sm">
-        <h2 className="mt-10 text-center text-2xl font-bold tracking-tight text-black">
+        <h2 className="mt-10 text-center text-2xl font-bold tracking-tight text-white">
           Reset your password
         </h2>
         <p className="mt-2 text-center text-sm text-gray-400">
@@ -31,7 +31,7 @@ export default function ForgotPassword() {
         </p>
       </div>
 
-      <div className="mt-10 shadow-2xl p-3  sm:mx-auto sm:w-full sm:max-w-sm">
+      <div className="mt-10 shadow-3xl p-3 bg-amber-50  sm:mx-auto sm:w-full sm:max-w-sm">
         {message && <p className="text-green-500 text-sm mb-3">{message}</p>}
         {error && <p className="text-red-500 text-sm mb-3">{error}</p>}
 

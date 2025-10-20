@@ -37,18 +37,23 @@ export default function Login() {
     }
   };
 
+  // 👇 Nouveau bouton invité
+  const handleGuestLogin = () => {
+    navigate("/home");
+  };
+
   return (
-    <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8  ">
+    <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        <h2 className="mt-10 text-center text-2xl font-bold tracking-tight text-black">
+        <h2 className="mt-10 text-center text-2xl font-bold tracking-tight text-white">
           Sign in to your account
         </h2>
       </div>
 
-      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm shadow-xl/30 p-3 bg-lime-50 ">
+      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm shadow-xl/30 p-3 bg-lime-50">
         {error && <p className="text-red-500 text-sm mb-2">{error}</p>}
 
-        <form onSubmit={handleLogin} className="space-y-6 ">
+        <form onSubmit={handleLogin} className="space-y-6">
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-black">
               Email address
@@ -78,7 +83,7 @@ export default function Login() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="block w-full rounded-md border bg-white/5 px-3 py-1.5  placeholder:text-gray-500 mt-2"
+              className="block w-full rounded-md text-black border px-3 py-1.5 mt-2"
             />
           </div>
 
@@ -86,7 +91,7 @@ export default function Login() {
             type="submit"
             className="w-full rounded-md bg-indigo-500 px-3 py-2 text-white font-semibold hover:bg-indigo-400"
           >
-            se connecter
+            Se connecter
           </button>
         </form>
 
@@ -97,11 +102,20 @@ export default function Login() {
           >
             Sign in with Google
           </button>
+
           <button
             onClick={handleGithubLogin}
             className="w-full rounded-md bg-gray-800 px-3 py-2 text-white font-semibold hover:bg-gray-700"
           >
             Sign in with GitHub
+          </button>
+
+          {/* 👇 Bouton invité ajouté ici */}
+          <button
+            onClick={handleGuestLogin}
+            className="w-full rounded-md bg-green-500 px-3 py-2 text-white font-semibold hover:bg-green-400"
+          >
+            Se connecter en tant qu’invité
           </button>
         </div>
 
