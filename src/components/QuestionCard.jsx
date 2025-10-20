@@ -13,7 +13,7 @@ const QuestionCard = ({ question }) => {
   const { title, description, tags, votes, createdAt } = question;
 
   return (
-    <div className="border-t-1  p-5 bg-white hover:shadow-lg transition duration-300 flex flex-col sm:flex-row gap-4">
+    <div className="border-t-1  p-4 bg-white hover:shadow-lg transition duration-300 flex flex-col sm:flex-row gap-4">
       {/* Votes */}
       <div className="flex flex-col items-center justify-start sm:w-20 text-center">
         <span className="text-lg font-semibold text-gray-800">{votes ?? 0}</span>
