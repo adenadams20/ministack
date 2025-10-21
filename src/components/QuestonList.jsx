@@ -13,6 +13,7 @@ const QuestionList = () => {
       {questions.map((q, i) => (
         <QuestionCard key={i} question={q} />
       ))}
+      <p>question</p>
     </div>
   );
 };
