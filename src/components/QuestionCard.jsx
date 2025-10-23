@@ -1,7 +1,9 @@
 // src/components/QuestionCard.jsx
 import React from "react";
-
-const QuestionCard = ({ question }) => {
+import VoteButtons from "./VoteButtons";
+import { voteQuestion } from "../services/questionService";
+import { getAuth } from "firebase/auth";
+const QuestionCard = ({ question, onVote}) => {
   if (!question) {
     return (
       <div className="p-4 border rounded-lg text-gray-500 italic">
@@ -9,6 +11,20 @@ const QuestionCard = ({ question }) => {
       </div>
     );
   }
+  const auth = getAuth();
+  const currentUser = auth.currentUser; // ✅ récupère l'utilisateur connecté
+
+  const handleVote = async (questionId, direction) => {
+    if (!currentUser) {
+      alert("Vous devez être connecté pour voter !");
+      return;
+    }
+
+    // Appelle le callback venant du parent
+    if (onVote) {
+      onVote(questionId, direction);
+    }
+  };
 
   const { title, description, tags, votes, createdAt } = question;
 
@@ -53,7 +69,13 @@ const QuestionCard = ({ question }) => {
           Posté le {createdAt?.toDate?.().toLocaleString?.() || "Date inconnue"}
         </small>
       </div>
-    </div>
+        <VoteButtons
+        itemId={question.id}
+        votes={question.votes}
+        onVote={handleVote}
+        type="question"
+      />
+      </div>
   );
 };
 
