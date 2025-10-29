@@ -40,9 +40,8 @@ try {
 
 };
 
-return ( <div className="flex justify-center py-10 px-4 bg-sky-900"> <div className="w-full max-w-3xl bg-white shadow-md rounded-lg p-8"> <h2 className="text-2xl font-semibold mb-6 text-gray-800 border-b pb-3">
+return ( <div className="flex justify-center py-20 mt-10 px-4 h-full bg-gray-100"> <div className="w-full max-w-3xl bg-white shadow-md rounded-lg p-8"> <h2 className="text-2xl font-semibold mb-6 text-gray-800 border-b pb-3">
 Poser une question </h2>
-
     <form onSubmit={handleSubmit} className="space-y-6">
       {/* Champ Titre */}
       <div>
@@ -105,7 +104,7 @@ Poser une question </h2>
           disabled={!isFormValid}
           className={`px-6 py-2 rounded text-white font-medium ${
             isFormValid
-              ? "bg-blue-600 hover:bg-blue-700"
+              ? "bg-orange-600 hover:bg-orange-400"
               : "bg-gray-400 cursor-not-allowed"
           }`}
         >

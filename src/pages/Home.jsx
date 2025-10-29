@@ -3,7 +3,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import QuestionList from "../components/QuestonList";// 🔹 vérifie bien le nom du fichier !
-
+import AnswerCard from "../components/AnswerCard";
 const posts = [
   {
     id: 1,
@@ -60,32 +60,34 @@ const posts = [
 
 export default function Home() {
   return (
-    <div className="bg-gray-900 py-24 sm:py-32 min-h-screen">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8 text-white">
+    <div className="h-800 bg-gray-100 py-50  ">
+
+      
+      <div className="mx-auto w-full   px-6 lg:px-8 text-black">
         {/* En-tête du blog */}
         <div className="mx-auto max-w-2xl lg:mx-0 mb-10">
-          <h2 className="text-4xl font-semibold tracking-tight sm:text-5xl">
+          <h2 className="text-4xl ms-10 text-center font-semibold tracking-tight sm:text-5xl">
             From the blog
           </h2>
-          <p className="mt-2 text-lg text-gray-300">
+          <p className="mt-2 text-lg text-end text-gray-300 border-2">
             Learn how to grow your business with our expert advice.
           </p>
 
           {/* Lien vers les utilisateurs */}
           <Link
             to="/UserProfile"
-            className="text-indigo-400 hover:text-indigo-200 font-semibold"
+            className="text-indigo-400 hover:text-indigo-200 font-semibold ms-60"
           >
             Voir les utilisateurs
           </Link>
         </div>
 
         {/* Section des questions */}
-        <div className="max-w-3xl mx-auto mt-10 bg-gray-800 p-6 rounded-lg shadow-lg">
+        <div className="max-w-3xl mx-auto mt-10 bg-white p-6 rounded-lg shadow-lg">
           <div className="flex justify-between items-center mb-6">
             <h1 className="text-2xl font-bold">Liste des questions</h1>
             <Link to="/QuestionForm">
-              <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 shadow">
+              <button className="px-4 py-2 bg-orange-500 font-medium  text-white rounded  shadow">
                 Poser une question
               </button>
             </Link>
