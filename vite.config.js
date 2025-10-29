@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/ministack/', // 👈 Remplace par le nom exact de ton repo
+  base: '', // 👈 Remplace par le nom exact de ton repo
 
 
   plugins: [
